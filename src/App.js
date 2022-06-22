@@ -21,6 +21,7 @@ class App extends React.Component {
             <Route path='/about' element={<About />} />
             <Route path='*' element={<Page404NotFound />} />
             <Route path='/videos/:id' element={<VideoDisplay />} />
+            <Route path='/:remove' element={<Page404NotFound />} />
           </Routes>
         </header>
       </div>

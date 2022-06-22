@@ -15,6 +15,7 @@ class Home extends Component {
     this.state = {
       searchedVideos: [],
       searchInput: '',
+      maxvideos: 15,
     };
   }
 
@@ -23,6 +24,7 @@ class Home extends Component {
       `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=9&q=${input}&key=${process.env.REACT_APP_API_KEY}`
     )
       .then((res) => {
+        console.log(res);
         return res.json();
       })
       .then((data) => {
@@ -65,7 +67,9 @@ class Home extends Component {
               className='text-center'
               style={{ width: '18rem', margin: '2rem 0rem' }}
             >
-              <Card.Title>{decode(video.snippet.title)}</Card.Title>
+              <Card.Title style={{ color: 'black' }}>
+                {decode(video.snippet.title)}
+              </Card.Title>
               <Link to={`/videos/${video.id.videoId}`} key={video.id.videoId}>
                 <Card.Img
                   variant='top'
@@ -85,7 +89,7 @@ class Home extends Component {
                         {decode(video.snippet.description)}
                       </ListGroupItem>
                       <ListGroupItem>
-                        Uploaded on:{' '}
+                        Published on:{' '}
                         {video.snippet.publishTime
                           ? video.snippet.publishTime.slice(0, 10)
                           : null}
@@ -124,7 +128,7 @@ class Home extends Component {
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
           searchInput={this.state.searchInput}
-          // selectMaxResults={this.selectMaxResults}
+          maxvideos={this.maxvideos}
         />
 
         <section className='content-box'>

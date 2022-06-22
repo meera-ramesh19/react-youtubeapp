@@ -44,14 +44,15 @@ class ShowComments extends Component {
                         <td colSpan={6}>{comment.dates}</td>
                         <td colSpan={10}>
                           <Button
+                            style={{ backgroundColor: '#ff0000' }}
                             className='button muted-button'
-                            onClick={() => 
-                              this.editRow(comment)}
+                            onClick={() => this.editRow(comment)}
                           >
                             Edit
                           </Button>
                           {'   '}
                           <Button
+                            style={{ backgroundColor: '#ff0000' }}
                             className='button muted-button'
                             onClick={() => deleteComments(comment.id)}
                           >

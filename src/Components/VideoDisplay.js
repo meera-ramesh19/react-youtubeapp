@@ -24,7 +24,7 @@ class VideoDisplay extends Component {
             <Card style={{ width: '45rem' }}>
               <Card.Img />
               <Card.Body>
-                <Card.Title>{vidtitle}</Card.Title>
+                <Card.Title >{vidtitle}</Card.Title>
                 <Card.Text>
                   <YouTube
                     videoId={id}

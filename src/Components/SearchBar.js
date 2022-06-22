@@ -3,7 +3,7 @@ import './SearchBar.css';
 import { Form, Button, InputGroup } from 'react-bootstrap';
 class SearchBar extends Component {
   render() {
-    const { searchInput, handleChange, handleSubmit } = this.props;
+    const { searchInput, handleChange, handleSubmit, maxvideos } = this.props;
 
     return (
       <div className='container'>
@@ -33,7 +33,9 @@ class SearchBar extends Component {
                   Search
                 </Button>
               </InputGroup>
+             
             </Form.Group>
+            
           </Form>
           {/* <form onSubmit={(event) => handleSubmit(event)}>
           <label>
