@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './SearchBar.css';
-import { decode } from 'html-entities';
-import Pagination from './Pagination.js';
-import SearchBar from './SearchBar.js';
+
 import Card from 'react-bootstrap/Card';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
+
+import './Home.css';
+import SearchBar from './SearchBar.js';
+import { decode } from 'html-entities';
 
 class Home extends Component {
   constructor() {
@@ -18,7 +20,7 @@ class Home extends Component {
 
   fetchData = (input) => {
     fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=2&q=${input}&regionCode=US&key=${process.env.REACT_APP_API_KEY}`
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=9&q=${input}&key=${process.env.REACT_APP_API_KEY}`
     )
       .then((res) => {
         return res.json();
@@ -53,9 +55,12 @@ class Home extends Component {
   render() {
     const { searchedVideos } = this.state;
     let results = searchedVideos.map((video) => {
+      // < key={video.id.videoId} video={video} />
+
       return (
         <>
-          <div className='grid-display' key={video.etag}>
+          {/* //           <div className='grid-display' key={video.etag}>  */}
+          <div className='home-video' key={video.etag}>
             <Card
               className='text-center'
               style={{ width: '18rem', margin: '2rem 0rem' }}
@@ -94,23 +99,23 @@ class Home extends Component {
             {/* <br /> */}
           </div>
         </>
-        // <Link to={`/videos/${video.id.videoId}`} key={video.id.videoId}>
-        //   <h4>{video.snippet.title}</h4>
-        //   <img
-        //     src={video.snippet.thumbnails.medium.url}
-        //     alt={video.snippet.title}
-        //   />
-        //   <h4>{video.snippet.description}</h4>
-        //   <div>
-        //     <h4>{video.snippet.regionCode}</h4>
-        //     <h4>
-        //       Uploaded on:{' '}
-        //       {video.snippet.publishTime
-        //         ? video.snippet.publishTime.slice(0, 10)
-        //         : null}
-        //     </h4>
-        //   </div>
-        // </Link>
+        //  <Link to={`/videos/${video.id.videoId}`} key={video.id.videoId}>
+        // //   <h4>{video.snippet.title}</h4>
+        // //   <img
+        // //     src={video.snippet.thumbnails.medium.url}
+        // //     alt={video.snippet.title}
+        // //   />
+        // //   <h4>{video.snippet.description}</h4>
+        // //   <div>
+        // //     <h4>{video.snippet.regionCode}</h4>
+        // //     <h4>
+        // //       Uploaded on:{' '}
+        // //       {video.snippet.publishTime
+        // //         ? video.snippet.publishTime.slice(0, 10)
+        // //         : null}
+        // //     </h4>
+        // //   </div>
+        // // </Link>
       );
     });
     return (
@@ -121,27 +126,29 @@ class Home extends Component {
           searchInput={this.state.searchInput}
           // selectMaxResults={this.selectMaxResults}
         />
-        {!searchedVideos.length ? (
-          <h4
-            className='text-md-center'
-            style={{
-              color: 'black',
-              fontSize: 20,
-              textAlign: 'center',
-              background: 'lightgray',
-              padding: '1rem 0rem',
-              margin: '0 auto',
-              width: '30rem',
-            }}
-          >
-            No Search Results Yet! Please submit a search above
-          </h4>
-        ) : (
-          ''
-        )}
-        {results}
-        {/* {results.length > 0 ? <Pagination /> : null} */}
-        {/* <VideoList searchedVideos={searchedVideos} />  */}
+
+        <section className='content-box'>
+          {!searchedVideos.length ? (
+            <h4
+              className='text-md-center'
+              style={{
+                color: 'black',
+                fontSize: 20,
+                textAlign: 'center',
+                background: 'lightgray',
+                padding: '1rem 0rem',
+                margin: '0 auto',
+                width: '30rem',
+              }}
+            >
+              No Search Results Yet! Please submit a search above
+            </h4>
+          ) : (
+            ''
+          )}
+          <ul className='all-content'> {results} </ul>
+          {/* <VideoList searchedVideos={searchedVideos} />  */}
+        </section>
       </div>
     );
   }
