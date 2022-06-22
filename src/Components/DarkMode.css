@@ -1,0 +1,20 @@
+body {
+  background: #fff;
+  color: #111;
+  text-align: center;
+}
+body.dark {
+  background: #111;
+  color: #eee;
+}
+.dark_mode-button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  color: #111;
+  background: transparent;
+}
+.dark .dark_mode-button {
+  color: #eee;
+}

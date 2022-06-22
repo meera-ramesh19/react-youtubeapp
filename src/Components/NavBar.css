@@ -1,0 +1,41 @@
+.navbar {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #ff0000;
+  display: flex;
+  list-style-type: none;
+  text-decoration: none;
+  padding: 0 2rem;
+}
+
+.logo {
+  padding: 0.5rem;
+  margin: 0.2rem;
+  background: rgb(230, 108, 108);
+}
+
+ul {
+  display: inline-flex;
+  margin: 2rem 4rem;
+  list-style-type: none;
+}
+
+ul li {
+  padding: 0 1rem;
+}
+ul li a {
+  text-decoration: none;
+  color: white;
+  background: black;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  font-size: 2rem;
+}
+li a:active {
+  color: red;
+}
+li:hover {
+  color: white;
+}
+

@@ -1,0 +1,14 @@
+.all-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0px;
+  gap: 25px;
+}
+.submit-bar {
+  background: grey;
+  font-size: 20;
+  text-align: center;
+  width: 40rem;
+  padding: 1rem;
+  margin: 0 auto;
+}

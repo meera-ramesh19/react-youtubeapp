@@ -1,0 +1,10 @@
+.notFound {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -260px;
+  margin-left: -160px;
+}
+.home > a{
+   text-decoration: none;
+}
