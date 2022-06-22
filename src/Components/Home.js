@@ -140,7 +140,7 @@ class Home extends Component {
           ''
         )}
         {results}
-        {results.length > 0 ? <Pagination /> : null}
+        {/* {results.length > 0 ? <Pagination /> : null} */}
         {/* <VideoList searchedVideos={searchedVideos} />  */}
       </div>
     );
