@@ -6,15 +6,15 @@ Check out site at (https://minivideotubeapp.netlify.app/)
 
 ---
 
-<img src='youtubesearch.png' alt="pics of youtubesearch"/>
+<img src="youtubesearch.png" alt="pics of youtubesearch"/>
 
 ---
 
-<img src='youtubeabout.png' alt="pics of about page"/>
+<img src="youtubeabout.png" alt="pics of about page"/>
 
 ---
 
-<img src='youtubecomments.png' alt="pics of youtubecomments"/>
+<img src="youtubecomments.png" alt="pics of youtubecomments"/>
 
 ---
 
