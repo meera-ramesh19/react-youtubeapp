@@ -1,3 +1,10 @@
+# This is a group project repo at
+
+Group project folder repo (https://github.com/derekpeterson-plutus/youtube-project-group3)
+
+Check out site at (https://minivideotubeapp.netlify.app/)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
