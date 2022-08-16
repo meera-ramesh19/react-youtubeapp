@@ -1,8 +1,8 @@
 # This is a group project repo at
 
-Group project folder repo (https://github.com/derekpeterson-plutus/youtube-project-group3)
+[Group project folder repo](https://github.com/derekpeterson-plutus/youtube-project-group3)
 
-Check out site at (https://minivideotubeapp.netlify.app/)
+[website](https://minivideotubeapp.netlify.app/)
 
 ---
 
