@@ -1,3 +1,23 @@
+# This is a group project repo at
+
+[Group project folder repo](https://github.com/derekpeterson-plutus/youtube-project-group3)
+
+
+
+---
+
+<img src="youtubesearch.png" alt="pics of youtubesearch"/>
+
+---
+
+<img src="youtubeabout.png" alt="pics of about page"/>
+
+---
+
+<img src="youtubecomments.png" alt="pics of youtubecomments"/>
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
