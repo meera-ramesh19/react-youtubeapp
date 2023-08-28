@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './DarkMode.css';
+import { FaSun } from'react-icons/fa';
+import { FaMoon } from'react-icons/fa';
 
-class DarkMode extends React.Component {
+class DarkMode extends Component {
   state = {
     darkMode:
       window.matchMedia &&
@@ -21,7 +23,11 @@ class DarkMode extends React.Component {
         className='dark_mode-button material-icons'
         onClick={this.darkModeToggle}
       >
-        {this.state.darkMode ? 'light' : 'dark'}
+         {this.state.darkMode ? <FaSun/>:<FaMoon/>
+        //  {*{*'light'  */} */}
+        // : 'dark'
+        }
+        
       </button>
     );
   }

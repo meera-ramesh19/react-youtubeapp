@@ -3,7 +3,6 @@ import React from 'react';
 import VideoDisplay from './Components/VideoDisplay.js';
 import NavBar from './Components/NavBar.js';
 import About from './Components/About.js';
-import ErrorPage from './Components/ErrorPage.js';
 import Page404NotFound from './Components/Page404NotFound.js';
 import Home from './Components/Home.js';
 import { Routes, Route } from 'react-router-dom';

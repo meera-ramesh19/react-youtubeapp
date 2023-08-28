@@ -9,25 +9,41 @@ import './Home.css';
 import SearchBar from './SearchBar.js';
 import { decode } from 'html-entities';
 
+const defaultOptions = [];
+for (let i = 0; i < 10; i++) {
+  defaultOptions.push(`option ${i}`);
+  defaultOptions.push(`suggesstion ${i}`);
+  defaultOptions.push(`advice ${i}`);
+}
+
 class Home extends Component {
   constructor() {
     super();
     this.state = {
       searchedVideos: [],
       searchInput: '',
-      maxvideos: 15,
+      // safeSearchSelect: '',
+      // orderSelect: '',
+      optionsInput: [],
+      videoNumber: 5,
     };
   }
 
-  fetchData = (input) => {
+  fetchData = (
+    input,
+    max
+    // orderVal, safe
+  ) => {
     fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=9&q=${input}&key=${process.env.REACT_APP_API_KEY}`
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${max}&q=${input}&key=${process.env.REACT_APP_API_KEY}`
     )
+      // &orderby=${orderVal}&safeSearch=${safe}
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         return res.json();
       })
       .then((data) => {
+        console.log(data);
         this.setState({
           searchedVideos: [...data.items],
         });
@@ -45,64 +61,98 @@ class Home extends Component {
     this.setState({ searchInput: event.target.value });
   };
 
+  selectedVideos = (event) => {
+    event.preventDefault();
+    this.setState({ orderSelect: event.target.value });
+  };
+  handleSafeSearch = (event) => {
+    event.preventDefault();
+    this.setState({ safeSearchSelect: event.target.value });
+  };
+
+  onInputChange = (event) => {
+    this.setState({
+      optionsInput: defaultOptions.filter((option) =>
+        option.includes(event.target.value)
+      ),
+    });
+  };
+
+  handleVideoNumber = (event) => {
+    event.preventDefault();
+    this.setState({ videoNumber: event.target.value });
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
     console.log('searchInput', this.state.searchInput);
-    if (this.state.searchInput) {
-      this.fetchData(this.state.searchInput);
-      this.setState({ searchInput: '' });
+    if (
+      this.state.searchInput &&
+      this.state.videoNumber
+      // &&
+      // this.state.orderSelect &&
+      // this.state.safeSearchSelect
+    ) {
+      this.fetchData(
+        this.state.searchInput,
+        this.state.videoNumber
+        // this.state.orderSelect,
+        // this.state.safeSearchSelect
+      );
+      this.setState({
+        searchInput: '',
+        orderSelect: '',
+        videoNumber: 5,
+        safeSearchSelect: '',
+      });
     }
   };
 
   render() {
     const { searchedVideos } = this.state;
     let results = searchedVideos.map((video) => {
-      // < key={video.id.videoId} video={video} />
-
       return (
-        <>
-          {/* //           <div className='grid-display' key={video.etag}>  */}
-          <div className='home-video' key={video.etag}>
-            <Card
-              className='text-center'
-              style={{ width: '18rem', margin: '2rem 0rem' }}
-            >
-              <Card.Title style={{ color: 'black' }}>
-                {decode(video.snippet.title)}
-              </Card.Title>
-              <Link to={`/videos/${video.id.videoId}`} key={video.id.videoId}>
-                <Card.Img
-                  variant='top'
-                  src={video.snippet.thumbnails.medium.url}
-                />
-              </Link>
-              <Card.Body>
+        <div className='home-video' key={video.etag}>
+          <Card
+            className='text-center'
+            style={{ width: '18rem', margin: '2rem 0rem' }}
+          >
+            <Card.Title style={{ color: 'black' }}>
+              {decode(video.snippet.title)}
+            </Card.Title>
+            <Link to={`/videos/${video.id.videoId}`} key={video.id.videoId}>
+              <Card.Img
+                variant='top'
+                src={video.snippet.thumbnails.medium.url}
+              />
+            </Link>
+            <Card.Body>
+              <Card.Text>
                 <Card.Text>
-                  <Card.Text>
-                    <ListGroup className='list-group-flush'>
-                      <ListGroupItem>
-                        Title:
-                        {decode(video.snippet.title)}
-                      </ListGroupItem>
-                      <ListGroupItem>
-                        Description:
-                        {decode(video.snippet.description)}
-                      </ListGroupItem>
-                      <ListGroupItem>
-                        Published on:{' '}
-                        {video.snippet.publishTime
-                          ? video.snippet.publishTime.slice(0, 10)
-                          : null}
-                      </ListGroupItem>
-                    </ListGroup>
-                  </Card.Text>
-                  {/* <Button variant='primary'>Go somewhere</Button> */}
+                  <ListGroup className='list-group-flush'>
+                    <ListGroupItem>
+                      Title:
+                      {decode(video.snippet.title)}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      Description:
+                      {decode(video.snippet.description)}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      Published on:{' '}
+                      {video.snippet.publishTime
+                        ? video.snippet.publishTime.slice(0, 10)
+                        : null}
+                    </ListGroupItem>
+                  </ListGroup>
                 </Card.Text>
-              </Card.Body>
-            </Card>
-            {/* <br /> */}
-          </div>
-        </>
+                {/* <Button variant='primary'>Go somewhere</Button> */}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+          {/* <br /> */}
+        </div>
+
         //  <Link to={`/videos/${video.id.videoId}`} key={video.id.videoId}>
         // //   <h4>{video.snippet.title}</h4>
         // //   <img
@@ -128,7 +178,13 @@ class Home extends Component {
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
           searchInput={this.state.searchInput}
-          maxvideos={this.maxvideos}
+          orderSelect={this.state.orderSelect}
+          selectedVideos={this.selectedVideos}
+          videoNumber={this.state.videoNumber}
+          handleVideoNumber={this.handleVideoNumber}
+          safeSearchSelect={this.state.safeSearchSelect}
+          handleSafeSearch={this.handleSafeSearch}
+          onInputChange={this.onInputChange}
         />
 
         <section className='content-box'>

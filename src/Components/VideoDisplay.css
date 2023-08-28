@@ -16,13 +16,16 @@
   margin: 0px 8px;
 } */
 h5 {
+  max-width: 1000px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  margin-left:50px;
 }
 h5:before,
 h5:after {
   content: '';
-  flex: 1 0;
+  flex: 1 1;
   border-bottom: 1px solid;
   margin: auto;
 }
@@ -31,4 +34,7 @@ h5:before {
 }
 h5:after {
   margin-left: 0.5rem;
+}
+.counter {
+  padding: 0 2rem;
 }
